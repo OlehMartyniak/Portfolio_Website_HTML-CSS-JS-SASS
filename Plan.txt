@@ -119,4 +119,29 @@ function toggleMenu() {
     }
 }
 
+Для того щоб меню зʼявлялось поступово, одне знизу (картинка), а інше зверху (меню), використовуємо:
+transform: translate3d(0,100%,0); - знизу
+transform: translate3d(0,-100%,0); - зверху
+
+Щоб в меню елементи зʼявлялись поступово з правого боку:
+
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+
+        &.show {
+            // slide in from right
+            transform: translate3d(0,0,0);
+        }
+    }
+
+І також використаємо луп, де кожному елементу збільшимо час появи:
+
+@for $x from 1 through 4 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: $x * 0.1s;
+    }
+}
+
+
 
